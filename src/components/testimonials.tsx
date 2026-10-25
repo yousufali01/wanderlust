@@ -61,7 +61,7 @@ export function Testimonials() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <h2 className="text-4xl font-light sm:text-5xl">
+            <h2 className="text-3xl font-light sm:text-4xl lg:text-5xl">
               What Travelers Say
             </h2>
             <p className="mt-3 text-[15px] text-neutral-600">
@@ -74,7 +74,7 @@ export function Testimonials() {
               type="button"
               aria-label="Previous testimonials"
               onClick={() => setOffset((o) => (o - 1 + count) % count)}
-              className="grid size-11 place-items-center rounded-full border border-neutral-300 text-neutral-600 transition hover:border-[#17a3b3] hover:text-[#17a3b3]"
+              className="grid size-10 place-items-center rounded-full border border-neutral-300 text-neutral-600 transition hover:border-[#17a3b3] hover:text-[#17a3b3] sm:size-11"
             >
               <ArrowLeft className="size-4" />
             </button>
@@ -82,7 +82,7 @@ export function Testimonials() {
               type="button"
               aria-label="Next testimonials"
               onClick={() => setOffset((o) => (o + 1) % count)}
-              className="grid size-11 place-items-center rounded-full border border-neutral-300 text-neutral-600 transition hover:border-[#17a3b3] hover:text-[#17a3b3]"
+              className="grid size-10 place-items-center rounded-full border border-neutral-300 text-neutral-600 transition hover:border-[#17a3b3] hover:text-[#17a3b3] sm:size-11"
             >
               <ArrowRight className="size-4" />
             </button>
@@ -93,10 +93,10 @@ export function Testimonials() {
           {visible.map((testimonial) => (
             <article
               key={testimonial.name}
-              className="flex border border-neutral-200 bg-white"
+              className="flex bg-white shadow-sm ring-1 ring-neutral-200 transition-shadow hover:shadow-md"
             >
-              <div className="flex flex-1 flex-col p-6">
-                <blockquote className="text-lg leading-snug text-neutral-900">
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
+                <blockquote className="text-base leading-snug text-neutral-900 sm:text-lg">
                   {testimonial.quote}
                 </blockquote>
                 <footer className="mt-auto pt-10">
@@ -112,13 +112,13 @@ export function Testimonials() {
                   </p>
                 </footer>
               </div>
-              <div className="relative w-36 shrink-0 sm:w-44">
+              <div className="relative w-24 shrink-0 sm:w-36 lg:w-44">
                 <Image
                   src={testimonial.photo}
                   alt={testimonial.name}
                   fill
                   className="object-cover"
-                  sizes="(min-width: 640px) 176px, 144px"
+                  sizes="(min-width: 1024px) 176px, (min-width: 640px) 144px, 96px"
                 />
               </div>
             </article>

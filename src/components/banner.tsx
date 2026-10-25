@@ -14,7 +14,7 @@ const searchFields = [
 export function Banner() {
   return (
     <section
-      className="relative flex min-h-[620px] flex-col bg-cover bg-center bg-no-repeat"
+      className="relative flex min-h-[520px] flex-col bg-cover bg-center bg-no-repeat sm:min-h-[620px]"
       style={{ backgroundImage: `url("${HERO_IMAGE}")` }}
     >
       <div
@@ -32,17 +32,17 @@ export function Banner() {
           with our curated travel experiences.
         </p>
 
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-9 flex w-full max-w-sm flex-col items-stretch gap-4 sm:mx-auto sm:w-auto sm:max-w-none sm:flex-row">
           <a
             href="#"
-            className="inline-flex items-center gap-3 bg-[#17a3b3] px-9 py-4 text-sm font-semibold tracking-[0.08em] text-white uppercase hover:bg-[#128d9c]"
+            className="inline-flex items-center justify-center gap-3 bg-[#17a3b3] px-9 py-4 text-sm font-semibold tracking-[0.08em] text-white uppercase transition-colors hover:bg-[#128d9c]"
           >
             Explore Now
             <ArrowRight className="size-4" />
           </a>
           <a
             href="#"
-            className="bg-white/30 px-9 py-4 text-sm font-semibold tracking-[0.08em] text-white uppercase backdrop-blur-sm hover:bg-white/40"
+            className="inline-flex items-center justify-center bg-white/30 px-9 py-4 text-sm font-semibold tracking-[0.08em] text-white uppercase backdrop-blur-sm transition-colors hover:bg-white/40"
           >
             View Destination
           </a>
