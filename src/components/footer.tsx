@@ -1,10 +1,11 @@
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 const quickLinks = [
-  { label: "Home", href: "#" },
-  { label: "Destinations", href: "#" },
-  { label: "My Bookings", href: "#" },
-  { label: "My Profile", href: "#" },
+  { label: "Home", href: "/" },
+  { label: "Destinations", href: "/destinations" },
+  { label: "Add Destination", href: "/add-destination" },
+  { label: "My Bookings", href: "/my-bookings" },
 ] as const;
 
 const supportLinks = [
@@ -15,10 +16,11 @@ const supportLinks = [
 
 function BrandIcon({
   path,
+  className = "size-5",
   ...props
 }: Omit<React.ComponentProps<"svg">, "viewBox" | "fill"> & { path: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className} {...props}>
       <path d={path} />
     </svg>
   );
@@ -84,9 +86,9 @@ export function Footer() {
             <ul className="mt-6 space-y-4 text-[15px] text-neutral-300">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="hover:text-[#17a3b3]">
+                  <Link href={link.href} className="hover:text-[#17a3b3]">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

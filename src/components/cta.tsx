@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 import CtaImage from "@/app/images/CTA.png";
 
@@ -24,13 +25,13 @@ export function Cta() {
           Join thousands of travelers who have discovered the world with us
         </p>
 
-        <a
-          href="#"
+        <Link
+          href="/destinations"
           className="mt-10 inline-flex items-center gap-3 bg-white px-8 py-4 text-sm font-semibold uppercase tracking-[0.08em] text-neutral-900 transition-colors hover:bg-neutral-100"
         >
           Book Your Trip Today
           <ArrowRight className="size-4" />
-        </a>
+        </Link>
       </div>
     </section>
   );

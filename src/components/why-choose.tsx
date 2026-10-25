@@ -31,7 +31,7 @@ export function WhyChoose() {
   return (
     <section className="bg-[#e0f4f9] py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <h2 className="text-3xl font-light sm:text-4xl lg:text-5xl">
+        <h2 className="text-center text-3xl font-light sm:text-4xl lg:text-5xl">
           Why Choose Wanderlust
         </h2>
         <p className="mt-4 text-center text-[15px] text-neutral-600">

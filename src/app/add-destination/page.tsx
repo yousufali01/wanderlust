@@ -16,6 +16,9 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
+import { useToast } from "@/hooks/use-toast";
+import { API_BASE } from "@/lib/api";
+
 const categories = [
   "Beach",
   "Mountain",
@@ -29,37 +32,50 @@ const fieldLabel = "text-[13px] font-medium";
 
 export default function AddDestinationPage() {
   const router = useRouter();
+  const { toast } = useToast();
   const [category, setCategory] = useState<string>("Beach");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setIsSubmitting(true);
 
-async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-  event.preventDefault();
+    const data = Object.fromEntries(
+      new FormData(event.currentTarget),
+    ) as Record<string, string>;
 
-  const data = Object.fromEntries(
-    new FormData(event.currentTarget),
-  ) as Record<string, string>;
+    try {
+      const res = await fetch(`${API_BASE}/add-destination`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-  try {
-    const res = await fetch("http://localhost:8000/add-destination", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+      if (!res.ok) {
+        throw new Error(`Failed to add travel package (${res.status})`);
+      }
 
-    const result = await res.json();
+      toast({
+        title: "Package added",
+        description: `${data.name || "Destination"} has been successfully created.`,
+        type: "success",
+      });
 
-    console.log("New travel package:", data);
-    console.log("Server response:", result);
-
-    if (!res.ok) {
-      throw new Error("Failed to add travel package");
+      router.push("/destinations");
+      router.refresh();
+    } catch (error) {
+      console.error("Error adding travel package:", error);
+      toast({
+        title: "Failed to add package",
+        description: "Could not save the destination. Please verify the server is running.",
+        type: "error",
+      });
+    } finally {
+      setIsSubmitting(false);
     }
-  } catch (error) {
-    console.error("Error adding travel package:", error);
   }
-}
 
 
   return (
@@ -207,10 +223,11 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
               <Button
                 type="submit"
                 size="lg"
-                className="border-transparent bg-[#17a3b3] px-5 text-white hover:bg-[#128d9c]"
+                disabled={isSubmitting}
+                className="border-transparent bg-[#17a3b3] px-5 text-white hover:bg-[#128d9c] disabled:opacity-60"
               >
                 <PackagePlus />
-                Add Travel Package
+                {isSubmitting ? "Adding Package..." : "Add Travel Package"}
               </Button>
             </div>
           </form>

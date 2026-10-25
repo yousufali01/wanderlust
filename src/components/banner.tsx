@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 // Placeholder asset — swap for the real hero image when available.
 const HERO_IMAGE =
@@ -14,60 +15,64 @@ const searchFields = [
 export function Banner() {
   return (
     <section
-      className="relative flex min-h-[520px] flex-col bg-cover bg-center bg-no-repeat sm:min-h-[620px]"
+      className="relative flex min-h-[560px] flex-col bg-cover bg-center bg-no-repeat sm:min-h-[640px]"
       style={{ backgroundImage: `url("${HERO_IMAGE}")` }}
     >
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/5 to-black/25"
+        className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/80"
       />
 
-      <div className="relative flex flex-1 flex-col items-center px-6 pb-16 text-center text-white">
-        <h1 className="max-w-3xl text-5xl leading-[1.1] font-light sm:text-6xl lg:text-7xl">
-          Discover Your <br className="hidden sm:block" />
-          Next Adventure
+      <div className="relative flex flex-1 flex-col items-center justify-center px-6 py-20 text-center text-white">
+        <h1 className="max-w-4xl text-4xl font-light tracking-tight sm:text-6xl lg:text-7xl leading-[1.15]">
+          {" "}
+          <span className="block sm:inline font-normal">
+            Discover Your Next Adventure
+          </span>
         </h1>
-        <p className="mt-6 max-w-xl text-[15px] text-white/90">
+        <p className="mt-5 max-w-2xl text-base sm:text-lg text-white/90 leading-relaxed font-light">
           Explore breathtaking destinations and create unforgettable memories
           with our curated travel experiences.
         </p>
 
         <div className="mt-9 flex w-full max-w-sm flex-col items-stretch gap-4 sm:mx-auto sm:w-auto sm:max-w-none sm:flex-row">
-          <a
-            href="#"
-            className="inline-flex items-center justify-center gap-3 bg-[#17a3b3] px-9 py-4 text-sm font-semibold tracking-[0.08em] text-white uppercase transition-colors hover:bg-[#128d9c]"
+          <Link
+            href="/destinations"
+            className="inline-flex items-center justify-center gap-2.5 rounded bg-[#17a3b3] px-9 py-4 text-sm font-semibold tracking-wider text-white uppercase shadow-lg shadow-[#17a3b3]/30 transition-all hover:bg-[#128d9c] hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0"
           >
             Explore Now
             <ArrowRight className="size-4" />
-          </a>
-          <a
-            href="#"
-            className="inline-flex items-center justify-center bg-white/30 px-9 py-4 text-sm font-semibold tracking-[0.08em] text-white uppercase backdrop-blur-sm transition-colors hover:bg-white/40"
+          </Link>
+          <Link
+            href="/destinations"
+            className="inline-flex items-center justify-center rounded border border-white/40 bg-white/10 px-9 py-4 text-sm font-semibold tracking-wider text-white uppercase backdrop-blur-md transition-all hover:bg-white/20 hover:border-white/70 hover:-translate-y-0.5 active:translate-y-0"
           >
-            View Destination
-          </a>
+            View Destinations
+          </Link>
         </div>
       </div>
 
-      <div className="relative flex flex-col divide-y divide-white/30 text-white sm:flex-row sm:divide-y-0 sm:divide-x">
+      <div className="relative flex flex-col divide-y divide-white/20 bg-black/40 backdrop-blur-md text-white border-t border-white/15 sm:flex-row sm:divide-y-0 sm:divide-x">
         {searchFields.map((field) => (
           <button
             key={field.label}
             type="button"
-            className="flex flex-1 flex-col items-start gap-0.5 bg-neutral-500/45 px-6 py-3 text-left hover:bg-neutral-500/60"
+            className="flex flex-1 flex-col items-start gap-1 px-6 py-3.5 text-left transition-colors hover:bg-white/10"
           >
-            <span className="text-lg leading-6 font-semibold">
+            <span className="text-xs uppercase tracking-wider text-[#2dd4bf] font-medium">
               {field.label}
             </span>
-            <span className="text-sm text-white/80">{field.value}</span>
+            <span className="text-sm sm:text-base font-semibold text-white/90">
+              {field.value}
+            </span>
           </button>
         ))}
-        <button
-          type="button"
-          className="w-full bg-[#17a3b3] py-4 text-base font-semibold hover:bg-[#128d9c] sm:w-44 sm:py-0"
+        <Link
+          href="/destinations"
+          className="flex items-center justify-center bg-[#17a3b3] px-8 py-4 text-sm font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#128d9c] sm:w-44 sm:py-0"
         >
           Search
-        </button>
+        </Link>
       </div>
     </section>
   );
